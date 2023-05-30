@@ -1,16 +1,26 @@
 # firebase_list
 
-A new Flutter project.
+## Seja bem vindo
 
-## Getting Started
+👋 Olá, seja bem vindo.
 
-This project is a starting point for a Flutter application.
+## Curso
 
-A few resources to get you started if this is your first Flutter project:
+💻 Aplicativo do Bootcamp Formação Flutter Specialist, do professor Danilo Perez na plataforma Digital Innovation One.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Escopo
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+📚 Nesse projeto, eu vou ter a oportunidade de desenvolver um App  de Lista de Tarefas e utilizar o Firebase para armazernar as informações.
+
+
+## Foco
+
+😊 O módulo é focado em desenvolver um App utilizando o Firebase.
+
+## Prazo
+
+⚡ Este módulo foi iniciado no dia 30/05/2023.
+
+## Imagens
+
+:camera: Neste momento, eu não possuo imagens, no entanto, em breve irei disponibilizar.
