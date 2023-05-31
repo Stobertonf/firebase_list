@@ -12,30 +12,37 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-carregarHome() async {
-  FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-  analytics.logEvent(name: "SplashScreenOepn");
-  final prefs = await SharedPreferences.getInstance();
-  var userId = prefs.getString('user_id');
-  if (userId == null) {
-    var uuid = const Uuid();
-    userId = uuid.v4();
-    await prefs.setString('user_id', userId);
-  }
-  Future.delayed(
-    const Duration(seconds: 2),
-    () {
-      Navigator.pushReplacement(
-        context as BuildContext,
-        MaterialPageRoute(
-          builder: (_) => const HomePage(),
-        ),
-      );
-    },
-  );
-}
-
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    carregarHome();
+  }
+
+  carregarHome() async {
+    FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+    analytics.logEvent(name: "SplashScreenOepn");
+    final prefs = await SharedPreferences.getInstance();
+    var userId = prefs.getString('user_id');
+    if (userId == null) {
+      var uuid = const Uuid();
+      userId = uuid.v4();
+      await prefs.setString('user_id', userId);
+    }
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        Navigator.pushReplacement(
+          context as BuildContext,
+          MaterialPageRoute(
+            builder: (_) => const HomePage(),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
