@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_list/pages/home/home_page.dart';
+import 'package:firebase_list/pages/chat/chat_page.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_list/pages/tasks/tarefa_page.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 class CustonDrawer extends StatelessWidget {
   const CustonDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+
+    var nicknameController = TextEditingController();
+    final remoteConfig = FirebaseRemoteConfig.instance;
     return Drawer(
       child: ListView(
         children: [
@@ -16,33 +23,71 @@ class CustonDrawer extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const HomePage(),
+                  builder: (_) => TarefaPage(),
                 ),
               );
             },
           ),
           ListTile(
-            leading: const Icon(Icons.chat),
-            title: const Text("Chat"),
+            leading: const Icon(
+              Icons.chat,
+            ),
+            title: const Text(
+              "Chat",
+            ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const HomePage(),
-                ),
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return AlertDialog(
+                    content: Wrap(
+                      //mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          remoteConfig.getString(
+                            "TEXTO_CHAT",
+                          ),
+                        ),
+                        TextField(
+                          controller: nicknameController,
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            nicknameController.text = '';
+                            analytics.logEvent(
+                              name: "ChatPage",
+                            );
+                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ChatPage(
+                                  nickName: nicknameController.text,
+                                ),
+                              ),
+                            );
+                          },
+                          child: const Text(
+                            "Entrar no chat",
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
               );
             },
           ),
           ListTile(
-            leading: const Icon(Icons.bug_report),
-            title: const Text("Crashlytics"),
+            leading: const Icon(
+              Icons.bug_report,
+            ),
+            title: const Text(
+              "Crashlytics",
+            ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const HomePage(),
-                ),
-              );
+              analytics.logEvent(name: "Exception");
+              throw Exception();
             },
           ),
         ],
