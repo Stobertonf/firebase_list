@@ -41,7 +41,6 @@ class CustonDrawer extends StatelessWidget {
                 builder: (_) {
                   return AlertDialog(
                     content: Wrap(
-                      //mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           remoteConfig.getString(
