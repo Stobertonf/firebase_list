@@ -30,7 +30,7 @@ apply plugin: 'com.google.firebase.crashlytics'
 
 android {
     namespace "com.example.firebase_list"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 33
     ndkVersion flutter.ndkVersion
 
     compileOptions {
